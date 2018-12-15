@@ -1,16 +1,42 @@
 import defaultStorage from './storage'
 
-export default (store, options) => {
-	const {
-		key,
-		storage = defaultStorage,
-		parser = JSON.parse,
-		serializer = JSON.stringify,
-	} = options.get().persist
+export default (settings = {}) => (store, options) => {
+    const {
+        key,
+        storage = defaultStorage,
+        parser = JSON.parse,
+        serializer = JSON.stringify,
+    } = settings
 
-	const localState = storage.getItem(key)
+    const localState = storage.getItem(key)
 
-	if (localState) options.inject({ state: parser(localState) })
+    options.inject({
+        modules: {
+            persist: {
+                state: {
+                    rehydrated: false,
+                },
 
-	store.subscribe(() => storage.setItem(key, serializer(store.get())))
+                reducers: {
+                    rehydrate: state => ({
+                        rehydrated: true,
+                    }),
+                },
+            },
+        },
+    })
+
+    if (localState) {
+        options.inject({ state: parser(localState) })
+    }
+
+    store.subscribe(() => {
+        const { persist, ...state } = store.get()
+
+        if (!persist.rehydrated) {
+            store.commit.persist.rehydrate()
+        }
+
+        storage.setItem(key, serializer(state))
+    })
 }

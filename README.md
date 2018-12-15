@@ -1,3 +1,3 @@
 # Anew Store Plugins
 
-Store plugins for enhancing `@anew/store` functionality.
+Store plugins for enhancing/extending `@anew/store` functionality.
