@@ -1,6 +1,6 @@
 {
     "name": "@anew/plugins",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Anew Store Plugins",
     "main": "lib/index.js",
     "author": "Abdelrahman Salem <abubakir1997@gmail.com> (http://www.pages.drexel.edu/\\~aas372/)",
@@ -23,7 +23,11 @@
         "type": "git",
         "url": "git+https://github.com/anewjs/plugins.git"
     },
-    "keywords": ["anew", "store", "plugins"],
+    "keywords": [
+        "anew",
+        "store",
+        "plugins"
+    ],
     "bugs": {
         "url": "https://github.com/anewjs/plugins/issues"
     },
