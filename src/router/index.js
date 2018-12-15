@@ -1,5 +1,3 @@
-import { createBrowserHistory } from 'history'
-
 function createByNameAction(type, history, router) {
     const action = history[type]
 
@@ -43,9 +41,7 @@ function createAction(type, history, router) {
     }
 }
 
-export default (settings = {}) => (store, options) => {
-    const { history } = settings.configuration || settings
-
+export default ({ history, router } = {}) => (store, options) => {
     options.inject({
         modules: {
             router: {
@@ -65,9 +61,9 @@ export default (settings = {}) => (store, options) => {
                     goForward: history.goForward,
                     canGo: history.canGo,
 
-                    push: createByNameAction('push', history, settings),
-                    replace: createByNameAction('replace', history, settings),
-                    block: createAction('block', history, settings),
+                    push: createByNameAction('push', history, router),
+                    replace: createByNameAction('replace', history, router),
+                    block: createAction('block', history, router),
                 },
 
                 getters: {

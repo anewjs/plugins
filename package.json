@@ -1,66 +1,61 @@
 {
-  "name": "@anew/plugins",
-  "version": "1.0.2",
-  "description": "Anew Store Plugins",
-  "main": "lib/index.js",
-  "author": "Abdelrahman Salem <abubakir1997@gmail.com> (http://www.pages.drexel.edu/\\~aas372/)",
-  "license": "MIT",
-  "homepage": "https://github.com/anewjs/plugins#readme",
-  "directories": {
-    "lib": "lib"
-  },
-  "scripts": {
-    "test": "jest",
-    "test:start": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "lint": "eslint src",
-    "clean": "rm -rf lib",
-    "build": "yarn clean && babel src -d lib",
-    "start": "babel src -w -d lib",
-    "prepublish": "yarn build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anewjs/plugins.git"
-  },
-  "keywords": [
-    "anew",
-    "store",
-    "plugins"
-  ],
-  "bugs": {
-    "url": "https://github.com/anewjs/plugins/issues"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "name": "@anew/plugins",
+    "version": "1.0.2",
+    "description": "Anew Store Plugins",
+    "main": "lib/index.js",
+    "author": "Abdelrahman Salem <abubakir1997@gmail.com> (http://www.pages.drexel.edu/\\~aas372/)",
+    "license": "MIT",
+    "homepage": "https://github.com/anewjs/plugins#readme",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "test": "jest",
+        "test:start": "jest --watch",
+        "test:coverage": "jest --coverage",
+        "lint": "eslint src",
+        "clean": "rm -rf lib",
+        "build": "yarn clean && babel src -d lib",
+        "start": "babel src -w -d lib",
+        "prepublish": "yarn build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/anewjs/plugins.git"
+    },
+    "keywords": ["anew", "store", "plugins"],
+    "bugs": {
+        "url": "https://github.com/anewjs/plugins/issues"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{js,json,css,scss,md}": [
+            "prettier --config ./.prettierrc --write \"src/**/*.js\"",
+            "git add"
+        ]
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.2.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.2.0",
+        "@babel/core": "^7.2.0",
+        "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+        "@babel/plugin-transform-react-display-name": "^7.2.0",
+        "@babel/plugin-transform-react-jsx": "^7.2.0",
+        "@babel/plugin-transform-runtime": "^7.2.0",
+        "@babel/preset-env": "^7.2.0",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-eslint": "^10.0.1",
+        "babel-jest": "^23.6.0",
+        "eslint": "4.x",
+        "husky": "^1.1.3",
+        "jest": "^23.4.1",
+        "lint-staged": "^8.0.4",
+        "prettier": "^1.15.1"
     }
-  },
-  "lint-staged": {
-    "src/**/*.{js,json,css,scss,md}": [
-      "prettier --config ./.prettierrc --write \"src/**/*.js\"",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.2.0",
-    "history": "^4.7.2"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.2.0",
-    "@babel/core": "^7.2.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
-    "@babel/plugin-transform-react-display-name": "^7.2.0",
-    "@babel/plugin-transform-react-jsx": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
-    "eslint": "4.x",
-    "husky": "^1.1.3",
-    "jest": "^23.4.1",
-    "lint-staged": "^8.0.4",
-    "prettier": "^1.15.1"
-  }
 }
