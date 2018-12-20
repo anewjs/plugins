@@ -3,7 +3,7 @@ export default (settings = {}) => store => {
 
     if (process.env.NODE_ENV !== 'production' || production) {
         store.subscribe((action, args) => {
-            if (window.logger === false) return
+            if (window.logger === false || localStorage.getItem('logger') === 'false') return
 
             console.group(action)
             console.log(`args:`, args)
