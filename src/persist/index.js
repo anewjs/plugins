@@ -6,6 +6,8 @@ export default (settings = {}) => (store, options) => {
         storage = defaultStorage,
         parser = JSON.parse,
         serializer = JSON.stringify,
+        onPersist = state => state,
+        onRehydrate = localState => localState,
     } = settings
 
     const localState = storage.getItem(key)
@@ -27,7 +29,9 @@ export default (settings = {}) => (store, options) => {
     })
 
     if (localState) {
-        options.inject({ state: parser(localState) })
+        options.inject({
+            state: parser(localState),
+        })
     }
 
     store.subscribe(() => {
@@ -37,6 +41,10 @@ export default (settings = {}) => (store, options) => {
             store.commit.persist.rehydrate()
         }
 
-        storage.setItem(key, serializer(state))
+        try {
+            storage.setItem(key, serializer(onPersist(state)))
+        } catch (e) {
+            console.error(e)
+        }
     })
 }

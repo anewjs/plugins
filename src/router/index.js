@@ -10,7 +10,7 @@ function createByNameAction(type, history, router) {
             const { name, method = 'path', params, ...rest } = config
 
             return action({
-                pathname: router.get(name)[method](method === 'data' && !params ? 'path' : params),
+                pathname: router.get(name)[method](params),
                 ...rest,
             })
         }
@@ -73,6 +73,7 @@ export default ({ history, router } = {}) => (store, options) => {
                     hash: state => state.location.hash,
                     search: state => state.location.search,
                     state: state => state.location.state,
+                    key: state => state.location.key,
                 },
             },
         },
