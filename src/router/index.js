@@ -85,6 +85,12 @@ export default ({ history, router } = {}) => (store, options) => {
                         (state, props) => props,
                         (search, props) => queryString.parse(search, props),
                     ],
+
+                    searchCount: ({ select }) => [
+                        select.search,
+
+                        search => Object.keys(search).length,
+                    ],
                 },
             },
         },
