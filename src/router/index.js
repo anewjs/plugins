@@ -9,11 +9,11 @@ function createByNameAction(type, history, router) {
                 return action(config(store, router))
             }
 
-            const { name, method = 'path', params, search, ...rest } = config
+            const { name, params, method = 'path', search = store.get.search(), ...rest } = config
 
             return action({
                 pathname: name ? router.get(name)[method](params) : store.get.pathname(),
-                search: search || store.get.search(),
+                search,
                 ...rest,
             })
         }
