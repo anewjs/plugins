@@ -1,3 +1,5 @@
+import queryString from 'query-string'
+
 function createByNameAction(type, history, router) {
     const action = history[type]
 
@@ -7,10 +9,11 @@ function createByNameAction(type, history, router) {
                 return action(config(store, router))
             }
 
-            const { name, method = 'path', params, ...rest } = config
+            const { name, method = 'path', params, search, ...rest } = config
 
             return action({
-                pathname: router.get(name)[method](params),
+                pathname: name ? router.get(name)[method](params) : store.get.pathname(),
+                search: search || store.get.search(),
                 ...rest,
             })
         }
@@ -74,6 +77,14 @@ export default ({ history, router } = {}) => (store, options) => {
                     search: state => state.location.search,
                     state: state => state.location.state,
                     key: state => state.location.key,
+                },
+
+                selectors: {
+                    search: ({ get }) => [
+                        get.search,
+                        (state, props) => props,
+                        (search, props) => queryString.parse(search, props),
+                    ],
                 },
             },
         },
