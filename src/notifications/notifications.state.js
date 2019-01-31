@@ -1,7 +1,5 @@
 export const open = false
 
-export const clearing = false
-
 export const history = []
 
 export const positions = {

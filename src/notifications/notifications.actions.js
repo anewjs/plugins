@@ -18,7 +18,7 @@ export const destroyNotifications = ({ commit }) => {
 }
 
 export const sendNotification = (
-    { batch, dispatch, core },
+    { commit, dispatch, core, get },
     {
         // Arguments
         solo = false,
@@ -36,7 +36,8 @@ export const sendNotification = (
     }
 ) => {
     const key = new Date().getTime()
-    const isMobile = core.select.app.isMobile()
+    const isMobile = core.get.app.isMobile()
+    const open = get.open()
 
     options.key = key
     options.vertical = vertical
@@ -50,12 +51,15 @@ export const sendNotification = (
     }
 
     if (solo) {
-        batch.closeNotifications()
+        commit.closeNotifications()
     }
 
-    batch.enqueueNotification(options)
-    batch.done()
-    dispatch.displayNotificaiton(options)
+    if (open) {
+        commit.addNotification(options)
+    } else {
+        commit.enqueueNotification(options)
+        dispatch.displayNotificaiton(options)
+    }
 }
 
 export const exitNotification = ({ commit, dispatch }, options) => {

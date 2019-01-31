@@ -85,7 +85,7 @@ export const exitNotification = (
             const isHistory = notification.key === key
 
             if (isHistory && !notification.dismissed && notification.duration) {
-                history = [...history.slice(0, historySize), notification]
+                history = [notification, ...history.slice(0, historySize)]
             }
 
             return !isHistory
@@ -99,14 +99,12 @@ export const exitNotification = (
 }
 
 export const dismissNotification = ({ history }, key) => ({
-    clearing: history.length === 1 && history.some(notification => notification.key === key),
     history: history.map(notification =>
         notification.key === key ? { ...notification, destroy: true } : notification
     ),
 })
 
 export const dismissNotifications = ({ history }, key) => ({
-    clearing: true,
     history: history.map(notification => ({
         ...notification,
         destroy: true,
@@ -114,11 +112,13 @@ export const dismissNotifications = ({ history }, key) => ({
 })
 
 export const destroyNotification = ({ history }, key) => ({
-    clearing: false,
     history: history.filter(notification => notification.key !== key),
 })
 
 export const destroyNotifications = () => ({
-    clearing: false,
     history: initialState.history,
+})
+
+export const addNotification = ({ history }, notification) => ({
+    history: [notification, ...history],
 })

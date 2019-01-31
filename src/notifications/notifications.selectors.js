@@ -4,10 +4,12 @@
  | ------------------
  */
 
-const createPositionSelector = type => store => [
-    store.get.positions,
-    args => args[0],
-    (positions, { vertical = 'top', horizontal = 'right' } = {}) => {
+const createPositionSelector = type => ({ get, prop }) => [
+    get.positions,
+    prop('vertical', 'top'),
+    prop('horizontal', 'right'),
+
+    (positions, vertical, horizontal) => {
         return positions[vertical][horizontal][type]
     },
 ]
