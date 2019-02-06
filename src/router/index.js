@@ -83,7 +83,7 @@ export default ({ history, router } = {}) => (store, options) => {
                     search: state => state.location.search,
                     state: state => state.location.state,
                     key: state => state.location.key,
-                    get: name => router.get(name),
+                    route: name => router.get(name),
                 },
 
                 selectors: {
