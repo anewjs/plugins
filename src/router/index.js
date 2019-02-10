@@ -11,7 +11,7 @@ function createByNameAction(type, history, router) {
 
             const route = router.get(config.name)
 
-            if (route && route.is(store.get.pathname())) {
+            if (!route) {
                 return false
             }
 
