@@ -1,4 +1,4 @@
-export { default as loggerPlugin } from './logger'
+export { default as loggerPlugin, Stringifier } from './logger'
 export { default as persistPlugin } from './persist'
 export { default as routerPlugin } from './router'
 export { default as notificationsPlugin } from './notifications'
