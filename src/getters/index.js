@@ -1,32 +1,26 @@
 export default (store, options) => {
-    const { modules = {}, state = {} } = options.get()
+    const optns = options.get()
 
-    options.inject({
-        getters: {
-            ...Object.keys(state).reduce((getters, statePropKey) => {
-                getters[statePropKey] = state => state[statePropKey]
+    if (typeof optns.state === 'object') {
+        Object.keys(optns.state).forEach(statePropKey => {
+            if (!optns.getters) optns.getters = {}
 
-                return getters
-            }, {}),
-            ...store.getters,
-        },
-        modules: Object.entries(modules).reduce((modules, [storeName, store]) => {
-            modules[storeName] =
-                typeof store.state === 'object'
-                    ? {
-                          ...store,
-                          getters: {
-                              ...Object.keys(store.state).reduce((getters, statePropKey) => {
-                                  getters[statePropKey] = state => state[statePropKey]
+            optns.getters[statePropKey] = state => state[statePropKey]
+        })
+    }
 
-                                  return getters
-                              }, {}),
-                              ...store.getters,
-                          },
-                      }
-                    : store
+    if (optns.modules) {
+        Object.entries(optns.modules).forEach(([storeName, store]) => {
+            if (typeof store.state === 'object') {
+                optns.modules[storeName].getters = {
+                    ...Object.keys(store.state).reduce((getters, statePropKey) => {
+                        getters[statePropKey] = state => state[statePropKey]
 
-            return modules
-        }, {}),
-    })
+                        return getters
+                    }, {}),
+                    ...store.getters,
+                }
+            }
+        })
+    }
 }
