@@ -1,6 +1,7 @@
+import { ObjectWithProps } from 'src/types'
 import defaultStorage from './storage'
 
-export default (settings = {}) => (store, options) => {
+export default (settings: ObjectWithProps = {}) => (store, options) => {
     const {
         key,
         storage = defaultStorage,

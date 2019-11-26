@@ -1,3 +1,4 @@
+import { ObjectWithProps } from 'src/types'
 import queryString from 'query-string'
 
 function createByNameAction(type, history, router) {
@@ -50,7 +51,7 @@ function createAction(type, history, router) {
     }
 }
 
-export default ({ history, router } = {}) => (store, options) => {
+export default ({ history, router }: ObjectWithProps = {}) => (store, options) => {
     options.inject({
         modules: {
             router: {

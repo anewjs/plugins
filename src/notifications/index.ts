@@ -1,5 +1,6 @@
 import notificationsConfig from './notifications.config'
 
+import { ObjectWithProps } from 'src/types'
 import * as actions from './notifications.actions'
 import * as reducers from './notifications.reducers'
 import * as listeners from './notifications.listeners'
@@ -7,7 +8,7 @@ import * as getters from './notifications.getters'
 import * as selectors from './notifications.selectors'
 import * as state from './notifications.state'
 
-export default ({ max, limit } = {}) => (store, options) => {
+export default ({ max, limit }: ObjectWithProps = {}) => (_, options) => {
     notificationsConfig({ max })
 
     if (limit) {
