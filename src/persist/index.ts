@@ -1,7 +1,7 @@
-import { ObjectWithProps } from 'src/types'
+import { Options } from 'types/persist'
 import defaultStorage from './storage'
 
-export default (settings: ObjectWithProps = {}) => (store, options) => {
+export default (settings = {}) => (store, options) => {
     const {
         key,
         storage = defaultStorage,
@@ -9,7 +9,7 @@ export default (settings: ObjectWithProps = {}) => (store, options) => {
         serializer = JSON.stringify,
         onPersist = state => state,
         onRehydrate = localState => localState,
-    } = settings
+    }: Options = settings
 
     const localState = storage.getItem(key)
 

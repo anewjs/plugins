@@ -1,5 +1,5 @@
+import { Notification } from 'types/notifications'
 import { reducePositions, reduceAtPosition } from './notifications.shared'
-import { ObjectWithProps } from 'src/types'
 import * as initialState from './notifications.state'
 
 export const openNotificationsDrawer = () => ({
@@ -19,7 +19,7 @@ export const enqueueNotification = (
         duration = 3000,
         undo = false,
         ...config
-    }: ObjectWithProps = {}
+    }: Notification = {}
 ) => ({
     positions: reduceAtPosition(positions, vertical, horizontal, ({ queue }) => ({
         queue: [

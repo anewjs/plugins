@@ -1,6 +1,6 @@
-import { ObjectWithProps } from 'src/types'
+import { Store } from 'types/getters'
 
-export default (store, options) => {
+export default (store: Store, options) => {
     const optns = options.get()
 
     if (typeof optns.state === 'object') {
@@ -12,7 +12,7 @@ export default (store, options) => {
     }
 
     if (optns.modules) {
-        Object.entries(optns.modules).forEach(([storeName, store]: [string, ObjectWithProps]) => {
+        Object.entries(optns.modules).forEach(([storeName, store]: [string, Store]) => {
             if (typeof store.state === 'object') {
                 optns.modules[storeName].getters = {
                     ...Object.keys(store.state).reduce((getters, statePropKey) => {

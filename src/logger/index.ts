@@ -1,12 +1,6 @@
-import { ObjectWithProps } from 'src/types'
+import { StringifierInterface, Options } from 'types/logger'
 
-declare global {
-    interface Window {
-        logger: any
-    }
-}
-
-export class Stringifier {
+export class Stringifier implements StringifierInterface {
     cache: any[] = []
 
     onStringify(key, value) {
@@ -34,12 +28,13 @@ export class Stringifier {
     }
 }
 
-export default ({ production, stringifier = new Stringifier() }: ObjectWithProps = {}) => store => {
+export default ({ production, stringifier = new Stringifier() }: Options = {}) => store => {
     if (process.env.NODE_ENV !== 'production' || production) {
         let prevState = {}
 
         store.subscribe((action, args, callType) => {
-            if (window.logger === false || localStorage.getItem('logger') === 'false') return
+            if ((window as any).logger === false || localStorage.getItem('logger') === 'false')
+                return
 
             console.group(`<${callType}> ${action}`)
             console.log(`args:`, args)

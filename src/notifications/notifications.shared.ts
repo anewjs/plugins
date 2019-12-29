@@ -1,4 +1,6 @@
-export const reducePositions = (positions, reducer) => {
+import { PositionReducer, Positions, Section, Position } from 'types/notifications'
+
+export const reducePositions = (positions: Positions, reducer: PositionReducer) => {
     return Object.keys(positions).reduce((positionsObj, vertical) => {
         positionsObj[vertical] = Object.keys(positionsObj[vertical]).reduce(
             (positionVerticalObject, horizontal) => {
@@ -22,7 +24,12 @@ export const reducePositions = (positions, reducer) => {
     }, positions)
 }
 
-export const reduceAtPosition = (positions, vertical, horizontal, reducer) => {
+export const reduceAtPosition = (
+    positions: Positions,
+    vertical: Section,
+    horizontal: Position,
+    reducer: PositionReducer
+) => {
     const position = positions[vertical][horizontal]
 
     return {

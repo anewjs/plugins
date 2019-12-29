@@ -1,4 +1,4 @@
-import { ObjectWithProps } from 'src/types'
+import { Data } from 'types/notifications'
 
 /**
  | ------------------
@@ -9,4 +9,4 @@ import { ObjectWithProps } from 'src/types'
  |
  */
 
-export const notificationsData: ObjectWithProps = {}
+export const notificationsData: Data = {}

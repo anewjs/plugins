@@ -1,8 +1,10 @@
-export const open = false
+import { Notification, Positions } from 'types/notifications'
 
-export const history = []
+export const open: boolean = false
 
-export const positions = {
+export const history: Notification[] = []
+
+export const positions: Positions = {
     top: {
         left: {
             notifications: [],
