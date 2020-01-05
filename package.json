@@ -1,6 +1,6 @@
 {
     "name": "@anew/plugins",
-    "version": "1.2.2",
+    "version": "1.4.0",
     "description": "Anew Store Plugins",
     "main": "lib/index.js",
     "author": "Abdelrahman Salem <abubakir1997@gmail.com> (http://www.pages.drexel.edu/\\~aas372/)",
