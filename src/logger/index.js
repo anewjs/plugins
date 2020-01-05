@@ -32,12 +32,18 @@ export default ({ production, stringifier = new Stringifier() } = {}) => store =
     if (process.env.NODE_ENV !== 'production' || production) {
         let prevState = {}
 
-        store.subscribe((action, args, callType) => {
+        store.subscribe((action, args, callType = 'REDUCER') => {
             if (window.logger === false || localStorage.getItem('logger') === 'false') return
             const groupId = `<${callType}> ${action}`
 
             console.group(groupId)
-            console.log(`args:`, args)
+            args.forEach(arg => {
+                if (arg instanceof Error) {
+                    console.error(arg)
+                }
+            })
+
+            console.log('args:', args)
             console.log(`before:`, prevState)
             console.log(`after:`, (prevState = JSON.parse(stringifier.stringify(store.get()))))
             console.groupEnd(groupId)
