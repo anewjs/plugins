@@ -52,7 +52,8 @@ export const sendNotification = (
         commit.closeNotifications()
     }
 
-    if (open) {
+    // TODO: Cleanup code
+    if (open || true) {
         commit.addNotification(options)
     } else {
         commit.enqueueNotification(options)
