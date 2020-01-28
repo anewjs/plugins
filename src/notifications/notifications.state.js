@@ -1,4 +1,4 @@
-export const open = false
+export const open = true
 
 export const history = []
 
