@@ -24,10 +24,9 @@ export const sendNotification = (
         solo = false,
 
         // Props
-        onUndo,
         onDismiss,
         onTimeout,
-        onExited,
+        onAction,
 
         // Options
         vertical = 'top',
@@ -44,10 +43,9 @@ export const sendNotification = (
     options.horizontal = isMobile ? 'center' : horizontal
 
     notificationsData[key] = {
-        onUndo,
+        onAction,
         onDismiss,
         onTimeout,
-        onExited,
     }
 
     if (solo) {
