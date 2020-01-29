@@ -4539,6 +4539,11 @@ react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-serialize@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-serialize/-/react-serialize-0.2.0.tgz#9f3c694ae6438c3b17b7e9e2cbc7337921888979"
+  integrity sha512-QWkALlrv9E8HOIk5XEznBmjhVsL/NE0mzccu+7AHAqbfmRDQg7vFXbZt6/I2w/WQ4re4H1AmnVedzHoYY4yb4g==
+
 read-pkg-up@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-4.0.0.tgz#1b221c6088ba7799601c808f91161c66e58f8978"
