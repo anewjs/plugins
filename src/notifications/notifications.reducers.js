@@ -12,10 +12,14 @@ export const closeNotificationsDrawer = () => ({
 export const enqueueNotification = (
     { positions },
     {
+        // Alias
+        timeout = 3000,
+
+        // Config
         vertical,
         horizontal,
         key = new Date().getTime(),
-        duration = 3000,
+        duration = timeout,
         undo = false,
         ...config
     } = {}

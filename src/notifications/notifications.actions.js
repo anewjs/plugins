@@ -1,6 +1,10 @@
 import { TRANSITION_DELAY, TRANSITION_DOWN_DURATION } from './notifications.constants'
 import { notificationsData } from './notifications.data'
 
+/**
+ * Used as a utility to destory notification. Users should use
+ * the `exitNotification` action to remove a notification
+ */
 export const destroyNotification = ({ commit }, key) => {
     commit.dismissNotification(key)
 
@@ -17,6 +21,9 @@ export const destroyNotifications = ({ commit }) => {
     }, 340)
 }
 
+/**
+ * Addes notification to the queue then runs the processQueue
+ */
 export const sendNotification = (
     { commit, dispatch, core, get },
     {
@@ -26,11 +33,16 @@ export const sendNotification = (
         // Props
         onDismiss,
         onTimeout,
-        onAction,
+        action,
+        render,
+
+        // Alias
+        y = 'top',
+        x = 'right',
 
         // Options
-        vertical = 'top',
-        horizontal = 'right',
+        vertical = y,
+        horizontal = x,
         ...options
     }
 ) => {
@@ -43,17 +55,17 @@ export const sendNotification = (
     options.horizontal = isMobile ? 'center' : horizontal
 
     notificationsData[key] = {
-        onAction,
         onDismiss,
         onTimeout,
+        action,
+        render,
     }
 
     if (solo) {
         commit.closeNotifications()
     }
 
-    // TODO: Cleanup code
-    if (open || true) {
+    if (open) {
         commit.addNotification(options)
     } else {
         commit.enqueueNotification(options)
@@ -61,6 +73,10 @@ export const sendNotification = (
     }
 }
 
+/**
+ * Removes from notifications and runs the processQueue
+ * @param {Object} options notificaiton infromation { key, horizontal, vertical }
+ */
 export const exitNotification = ({ commit, dispatch }, options) => {
     const displayDelay = TRANSITION_DELAY + TRANSITION_DOWN_DURATION + 40
 
