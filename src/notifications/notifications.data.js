@@ -11,6 +11,10 @@ export const notificationsData = {}
 
 export const getNotification = key => {
     const notification = { ...notificationsData[key] }
-    delete notificationsData[key]
+
+    notification.remove = () => {
+        delete notificationsData[key]
+    }
+
     return notification
 }
