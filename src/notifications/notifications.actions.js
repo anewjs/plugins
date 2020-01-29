@@ -1,4 +1,4 @@
-import { isValidElement } from 'react'
+import { isElement } from 'react-is'
 import { serialize } from 'react-serialize'
 import { TRANSITION_DELAY, TRANSITION_DOWN_DURATION } from './notifications.constants'
 import { notificationsData } from './notifications.data'
@@ -55,7 +55,7 @@ export const sendNotification = (
     options.vertical = vertical
     options.horizontal = isMobile ? 'center' : horizontal
 
-    if (isValidElement(options.message)) {
+    if (isElement(options.message)) {
         options.message = serialize(options.message)
     }
 
