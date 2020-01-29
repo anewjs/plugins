@@ -5,4 +5,4 @@ export { default as routerPlugin } from './router'
 export { default as notificationsPlugin } from './notifications'
 
 export { getNotification } from './notifications/notifications.data'
-export { NotificationTypes } from './notifications/notifications.types'
+export { NotificationType } from './notifications/notifications.type'
